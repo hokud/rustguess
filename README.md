@@ -13,19 +13,16 @@ This project was built for CMSI 3510 HW5 as a Rust-for-Linux character device mo
 
 ## Dependencies
 
-This project should be built inside a Linux virtual machine, not directly on a personal host machine.
+**This project should be built inside a Linux virtual machine, not directly on a personal host machine.**
 
-Required setup:
 
-* Ubuntu 26.04 LTS VM, such as a Multipass VM
-* Rust-enabled Linux kernel
-* Linux kernel headers
-* Rust compiler version expected by the kernel, such as `rustc-1.93`
-* Rust source package, such as `rust-1.93-src`
-* `bindgen`
-* `kmod`
-* `build-essential`
-* `make`
+Check if you have a VM installed:
+~~~bash
+ls /lib/modules/$(uname -r)/build/rust
+~~~
+I tested this program inside a Ubuntu 26.04 LTS Multipass VM using the Rust-enabled Ubuntu kernel and the kernel-matched Rust toolchain.
+Which can be downloaded [here](https://canonical.com/multipass/install)
+
 
 Install dependencies inside the VM:
 
@@ -36,6 +33,7 @@ sudo apt install -y rustc-1.93 rust-1.93-src bindgen
 sudo update-alternatives --install /usr/bin/rustc rustc /usr/bin/rustc-1.93 100
 ~~~
 
+
 Verify the toolchain:
 
 ~~~bash
@@ -44,12 +42,19 @@ rustc --version
 ls /lib/modules/$(uname -r)/build/rust
 ~~~
 
+Expected result:
+
+* `uname -r` should print the running kernel version.
+* `rustc --version` should report `rustc 1.93.x`.
+* `ls /lib/modules/$(uname -r)/build/rust` should list Rust kernel build files such as `Makefile`, `kernel`, `bindings`, and several `.rmeta` files.
+
 
 ## Installing
 
 Clone this repository inside the Linux VM:
 
 ~~~bash
+git init
 git clone https://github.com/hokud/rustguess.git
 cd rustguess
 ~~~
