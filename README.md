@@ -8,6 +8,9 @@ An interactive number-guessing game built as a Linux kernel module in Rust.
 
 This project was built for CMSI 3510 HW5 as a Rust-for-Linux character device module. It demonstrates the basic workflow for building, loading, testing, and unloading a safe Rust Linux kernel module. The module keeps a small amount of game state in the kernel, parses guesses written from user space, and returns feedback through normal file operations.
 
+## Demo
+
+![rustguess demo](rustguess-demo.gif)
 
 # Getting Started
 
